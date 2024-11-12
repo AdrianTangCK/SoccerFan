@@ -1,0 +1,23 @@
+/* To style the page */
+
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#results div {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#results .restaurant {
+    font-weight: bold;
+}
+
+#results .details {
+    font-style: italic;
+}
