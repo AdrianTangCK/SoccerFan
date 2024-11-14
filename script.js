@@ -1,5 +1,3 @@
-/* To get data from excel file */
-
 let screeningsData = [];  // Store the parsed data
 let filteredData = [];    // Store the filtered data for display
 

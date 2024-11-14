@@ -21,4 +21,44 @@
             <option value="">All Zones</option>
             <option value="Central">Central</option>
             <option value="South">South</option>
-            <option value="North">
+            <option value="North">North</option>
+            <option value="East">East</option>
+            <option value="West">West</option>
+        </select>
+
+        <label for="capacity-filter">Filter by Capacity:</label>
+        <input type="number" id="capacity-filter" placeholder="Minimum Capacity">
+
+        <label for="price-min-filter">Price Min:</label>
+        <input type="number" id="price-min-filter" placeholder="Min Price">
+
+        <label for="price-max-filter">Price Max:</label>
+        <input type="number" id="price-max-filter" placeholder="Max Price">
+
+        <button onclick="applyFilters()">Apply Filters</button>
+        <button onclick="resetFilters()">Reset Filters</button>
+    </section>
+
+    <!-- Table Section -->
+    <section id="screenings">
+        <table id="screenings-table">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Location Name</th>
+                    <th onclick="sortTable(1)">Address</th>
+                    <th onclick="sortTable(2)">Zone</th>
+                    <th onclick="sortTable(3)">Capacity</th>
+                    <th onclick="sortTable(4)">Price (SGD)</th>
+                </tr>
+            </thead>
+            <tbody id="screenings-body">
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Load SheetJS library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
