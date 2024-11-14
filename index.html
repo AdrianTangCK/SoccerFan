@@ -3,15 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Screening Of Football Matches in Singapore</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Live Soccer Screenings in Singapore</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Locations Showing Live Screening Of Football Matches</h1>
-    <input type="file" id="fileInput">
-    <div id="results"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+
+    <header>
+        <h1>Live Soccer Screenings in Singapore</h1>
+        <p>Find the best locations to watch live soccer matches!</p>
+    </header>
+
+    <section id="screenings">
+        <table id="screenings-table">
+            <thead>
+                <tr>
+                    <th>Location Name</th>
+                    <th>Address</th>
+                    <th>Zone</th>
+                    <th>Capacity</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody id="screenings-body">
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Load SheetJS library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
+
 

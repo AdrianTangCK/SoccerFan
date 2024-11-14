@@ -1,78 +1,47 @@
 /* To get data from excel file */
 
-// Simulated Excel data in CSV format
-const excelData = `
-Name,Address,Zone,Capacity,Cost,IsShowingFootball
-Restaurant A,123 Main St,Zone 1,50,30,Yes
-Restaurant B,456 Orchard Rd,Zone 2,100,50,No
-Restaurant C,789 Marina Bay,Zone 3,75,40,Yes
-`;
+document.addEventListener('DOMContentLoaded', () => {
+    const tableBody = document.getElementById('screenings-body');
 
-function readExcelData(data) {
-    const workbook = XLSX.read(data, { type: 'string' });
-    const sheetName = 'Sheet1'; // Specify the worksheet name
-    const firstSheet = workbook.Sheets[sheetName];
-    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+    // Load and parse the Excel file
+    fetch('screenings.xlsx')
+        .then(response => response.arrayBuffer())
+        .then(data => {
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+            const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-    displayResults(jsonData);
-}
+            displayData(jsonData);
+        });
 
-function displayResults(locations) {
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = '';
-    locations.forEach(location => {
-        if (location.IsShowingFootball === 'Yes') {
-            const locationElement = document.createElement('div');
-            locationElement.classList.add('restaurant');
-            locationElement.textContent = `${location.Name}, ${location.Address}`;
+    // Function to display data in table
+    function displayData(data) {
+        // Skip the header row (first row)
+        data.slice(1).forEach(row => {
+            const tr = document.createElement('tr');
 
-            const detailsElement = document.createElement('div');
-            detailsElement.classList.add('details');
-            detailsElement.textContent = `Zone: ${location.Zone}, Capacity: ${location.Capacity}, Cost: ${location.Cost}`;
+            const locationName = document.createElement('td');
+            locationName.textContent = row[0] || '';
+            tr.appendChild(locationName);
 
-            locationElement.appendChild(detailsElement);
-            resultsDiv.appendChild(locationElement);
-        }
-    });
-}
+            const address = document.createElement('td');
+            address.textContent = row[1] || '';
+            tr.appendChild(address);
 
-// Convert CSV to a format that SheetJS can read
-const workbook = XLSX.read(excelData, { type: 'string' });
-readExcelData(workbook);
+            const zone = document.createElement('td');
+            zone.textContent = row[2] || '';
+            tr.appendChild(zone);
 
+            const capacity = document.createElement('td');
+            capacity.textContent = row[3] || '';
+            tr.appendChild(capacity);
 
-/*
-document.getElementById('fileInput').addEventListener('change', function (e) {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+            const cost = document.createElement('td');
+            cost.textContent = row[4] || '';
+            tr.appendChild(cost);
 
-    reader.onload = function (event) {
-        const data = new Uint8Array(event.target.result);
-        const workbook = XLSX.read(data, { type: 'array' });
-        const sheetName = 'Sheet1'; // specify the worksheet name
-        const firstSheet = workbook.Sheets[sheetName];
-        const jsonData = XLSX.utils.sheet_to_json(firstSheet);
-
-        displayResults(jsonData);
-    };
-
-    reader.readAsArrayBuffer(file);
+            tableBody.appendChild(tr);
+        });
+    }
 });
-
-function displayResults(locations) {
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = '';
-    locations.forEach(location => {
-        const locationElement = document.createElement('div');
-        locationElement.classList.add('restaurant');
-        locationElement.textContent = `${location.Name}, ${location.Address}`;
-
-        const detailsElement = document.createElement('div');
-        detailsElement.classList.add('details');
-        detailsElement.textContent = `Zone: ${location.Zone}, Capacity: ${location.Capacity}, Cost: ${location.Cost}`;
-
-        locationElement.appendChild(detailsElement);
-        resultsDiv.appendChild(locationElement);
-    });
-}
-*/
