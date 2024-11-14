@@ -60,13 +60,29 @@ document.addEventListener('DOMContentLoaded', () => {
     window.applyFilters = function() {
         const zoneFilter = document.getElementById('zone-filter').value;
         const capacityFilter = parseInt(document.getElementById('capacity-filter').value) || 0;
-        const priceMinFilter = parseInt(document.getElementById('price-min-filter').value) || 0;
-        const priceMaxFilter = parseInt(document.getElementById('price-max-filter').value) || Infinity;
+        const priceRange = document.getElementById('price-range-filter').value.trim();
 
+        let priceMin = 0;
+        let priceMax = Infinity;
+
+        // Parse price range input
+        if (priceRange) {
+            const rangeParts = priceRange.split('-').map(part => part.trim());
+            if (rangeParts.length === 2) {
+                // If format is "min-max"
+                priceMin = parseInt(rangeParts[0]) || 0;
+                priceMax = parseInt(rangeParts[1]) || Infinity;
+            } else if (rangeParts.length === 1 && !isNaN(parseInt(rangeParts[0]))) {
+                // If a single number is entered
+                priceMin = priceMax = parseInt(rangeParts[0]);
+            }
+        }
+
+        // Filter data based on zone, capacity, and price range
         filteredData = screeningsData.filter(item => {
             return (!zoneFilter || item.zone === zoneFilter) &&
                    (!capacityFilter || item.capacity >= capacityFilter) &&
-                   (item.price >= priceMinFilter && item.price <= priceMaxFilter);
+                   (item.price >= priceMin && item.price <= priceMax);
         });
 
         displayData(filteredData);
@@ -76,8 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.resetFilters = function() {
         document.getElementById('zone-filter').value = '';
         document.getElementById('capacity-filter').value = '';
-        document.getElementById('price-min-filter').value = '';
-        document.getElementById('price-max-filter').value = '';
+        document.getElementById('price-range-filter').value = '';
         filteredData = screeningsData;
         displayData(filteredData);
     }
