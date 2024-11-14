@@ -32,12 +32,24 @@ document.addEventListener('DOMContentLoaded', () => {
         data.forEach(row => {
             const tr = document.createElement('tr');
 
+            // Make Location Name clickable, linking to Google Maps
             const locationName = document.createElement('td');
-            locationName.textContent = row.name;
+            const locationLink = document.createElement('a');
+            locationLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(row.name)}`;
+            locationLink.textContent = row.name;
+            locationLink.target = '_blank';  // Open in a new tab
+            locationLink.style.color = '#1d3557';  // Optional: link color
+            locationName.appendChild(locationLink);
             tr.appendChild(locationName);
 
+            // Make Address clickable, linking to Google Maps
             const address = document.createElement('td');
-            address.textContent = row.address;
+            const addressLink = document.createElement('a');
+            addressLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(row.address)}`;
+            addressLink.textContent = row.address;
+            addressLink.target = '_blank';  // Open in a new tab
+            addressLink.style.color = '#1d3557';  // Optional: link color
+            address.appendChild(addressLink);
             tr.appendChild(address);
 
             const zone = document.createElement('td');
