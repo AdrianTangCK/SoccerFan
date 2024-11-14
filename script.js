@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 address: row[1],
                 zone: row[2],
                 capacity: parseInt(row[3]) || 0,
-                price: parseInt(row[4].replace(' SGD', '').replace('Free', '0')) || 0  // Convert "Free" to 0
+                price: parseInt(row[4]) || 0  // Directly use price as a number
             }));
 
             filteredData = screeningsData;
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tr.appendChild(capacity);
 
             const price = document.createElement('td');
-            price.textContent = row.price === 0 ? 'Free' : row.price + ' SGD';
+            price.textContent = row.price;
             tr.appendChild(price);
 
             tableBody.appendChild(tr);
