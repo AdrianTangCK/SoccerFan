@@ -15,21 +15,32 @@ body {
 
 /* Hero Banner */
 .hero-banner {
-    background-color: #1d3557;
+    background-image: url('images/hero-banner.jpg'); /* Background image for the hero banner */
+    background-size: cover;
+    background-position: center;
     color: #f1faee;
     text-align: center;
-    padding: 40px 20px;
+    padding: 60px 20px;
     margin-bottom: 20px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay to enhance text visibility */
+    padding: 40px;
     border-radius: 8px;
 }
 
 .hero-banner h1 {
     font-size: 2.5em;
     margin-bottom: 10px;
+    color: #f1faee;
 }
 
 .hero-banner p {
     font-size: 1.2em;
+    color: #f1faee;
 }
 
 /* Filter Section */
@@ -41,10 +52,20 @@ body {
     padding: 15px;
     background-color: #a8dadc;
     border-radius: 8px;
+    background-image: url('images/field-texture.jpg'); /* Light soccer field texture */
+    background-size: cover;
 }
 
 #filters label {
     font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
 }
 
 #filters select, #filters input, #filters button {
@@ -79,6 +100,8 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+    background-image: url('images/field-background.jpg'); /* Subtle background for the table */
+    background-size: cover;
 }
 
 #screenings-table thead {
@@ -103,7 +126,7 @@ body {
 }
 
 #screenings-table tbody tr:nth-child(even) {
-    background-color: #f1faee;
+    background-color: rgba(241, 250, 238, 0.7);
 }
 
 #screenings-table tbody tr:hover {
@@ -112,4 +135,13 @@ body {
 
 #screenings-table td {
     color: #333333;
+}
+
+#screenings-table td a {
+    color: #1d3557;
+    text-decoration: none;
+}
+
+#screenings-table td a:hover {
+    text-decoration: underline;
 }

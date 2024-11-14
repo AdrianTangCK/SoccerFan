@@ -10,13 +10,17 @@
 
     <!-- Hero Banner -->
     <header class="hero-banner">
-        <h1>Find Your Perfect Spot to Watch Live Soccer</h1>
-        <p>Discover the best locations across Singapore to catch live soccer screenings!</p>
+        <div class="hero-overlay">
+            <h1>Find Your Perfect Spot to Watch Live Soccer</h1>
+            <p>Discover the best locations across Singapore to catch live soccer screenings!</p>
+        </div>
     </header>
 
     <!-- Filter Section -->
     <section id="filters">
-        <label for="zone-filter">Filter by Zone:</label>
+        <label for="zone-filter">
+            <img src="icons/stadium-icon.png" alt="Zone" class="icon"> Zone:
+        </label>
         <select id="zone-filter">
             <option value="">All Zones</option>
             <option value="Central">Central</option>
@@ -26,10 +30,14 @@
             <option value="West">West</option>
         </select>
 
-        <label for="capacity-filter">Filter by Capacity:</label>
+        <label for="capacity-filter">
+            <img src="icons/capacity-icon.png" alt="Capacity" class="icon"> Capacity:
+        </label>
         <input type="number" id="capacity-filter" placeholder="Minimum Capacity">
 
-        <label for="price-max-filter">Max Price:</label>
+        <label for="price-max-filter">
+            <img src="icons/price-icon.png" alt="Max Price" class="icon"> Max Price:
+        </label>
         <input type="number" id="price-max-filter" placeholder="Enter Max Price">
 
         <button onclick="applyFilters()">Apply Filters</button>
