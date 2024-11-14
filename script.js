@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 address: row[1],
                 zone: row[2],
                 capacity: parseInt(row[3]) || 0,
-                cost: row[4]
+                price: parseInt(row[4].replace(' SGD', '').replace('Free', '0')) || 0  // Convert "Free" to 0
             }));
 
             filteredData = screeningsData;
@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
             capacity.textContent = row.capacity;
             tr.appendChild(capacity);
 
-            const cost = document.createElement('td');
-            cost.textContent = row.cost;
-            tr.appendChild(cost);
+            const price = document.createElement('td');
+            price.textContent = row.price === 0 ? 'Free' : row.price + ' SGD';
+            tr.appendChild(price);
 
             tableBody.appendChild(tr);
         });
@@ -61,11 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to apply filters
     window.applyFilters = function() {
         const zoneFilter = document.getElementById('zone-filter').value;
-        const capacityFilter = document.getElementById('capacity-filter').value;
+        const capacityFilter = parseInt(document.getElementById('capacity-filter').value) || 0;
+        const priceMinFilter = parseInt(document.getElementById('price-min-filter').value) || 0;
+        const priceMaxFilter = parseInt(document.getElementById('price-max-filter').value) || Infinity;
 
         filteredData = screeningsData.filter(item => {
             return (!zoneFilter || item.zone === zoneFilter) &&
-                   (!capacityFilter || item.capacity >= parseInt(capacityFilter));
+                   (!capacityFilter || item.capacity >= capacityFilter) &&
+                   (item.price >= priceMinFilter && item.price <= priceMaxFilter);
         });
 
         displayData(filteredData);
@@ -75,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.resetFilters = function() {
         document.getElementById('zone-filter').value = '';
         document.getElementById('capacity-filter').value = '';
+        document.getElementById('price-min-filter').value = '';
+        document.getElementById('price-max-filter').value = '';
         filteredData = screeningsData;
         displayData(filteredData);
     }
@@ -82,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to sort table
     let sortDirection = true;
     window.sortTable = function(columnIndex) {
-        const columnKeys = ['name', 'address', 'zone', 'capacity', 'cost'];
+        const columnKeys = ['name', 'address', 'zone', 'capacity', 'price'];
 
         filteredData.sort((a, b) => {
             const aValue = a[columnKeys[columnIndex]];
