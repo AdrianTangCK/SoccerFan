@@ -13,15 +13,34 @@
         <p>Find the best locations to watch live soccer matches!</p>
     </header>
 
+    <!-- Filter Section -->
+    <section id="filters">
+        <label for="zone-filter">Filter by Zone:</label>
+        <select id="zone-filter">
+            <option value="">All Zones</option>
+            <option value="Central">Central</option>
+            <option value="South">South</option>
+            <option value="North">North</option>
+            <!-- Add other zones as needed -->
+        </select>
+
+        <label for="capacity-filter">Filter by Capacity:</label>
+        <input type="number" id="capacity-filter" placeholder="Minimum Capacity">
+        
+        <button onclick="applyFilters()">Apply Filters</button>
+        <button onclick="resetFilters()">Reset Filters</button>
+    </section>
+
+    <!-- Table Section -->
     <section id="screenings">
         <table id="screenings-table">
             <thead>
                 <tr>
-                    <th>Location Name</th>
-                    <th>Address</th>
-                    <th>Zone</th>
-                    <th>Capacity</th>
-                    <th>Cost</th>
+                    <th onclick="sortTable(0)">Location Name</th>
+                    <th onclick="sortTable(1)">Address</th>
+                    <th onclick="sortTable(2)">Zone</th>
+                    <th onclick="sortTable(3)">Capacity</th>
+                    <th onclick="sortTable(4)">Cost</th>
                 </tr>
             </thead>
             <tbody id="screenings-body">
@@ -35,5 +54,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
