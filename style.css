@@ -1,36 +1,115 @@
-/* Existing styles */
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-#filters {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1faee;
+    color: #333333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Hero Banner */
+.hero-banner {
+    background-color: #1d3557;
+    color: #f1faee;
+    text-align: center;
+    padding: 40px 20px;
     margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.hero-banner h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.hero-banner p {
+    font-size: 1.2em;
+}
+
+/* Filter Section */
+#filters {
     display: flex;
+    flex-wrap: wrap;
     gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #a8dadc;
+    border-radius: 8px;
 }
 
-#filters select, #filters input {
-    padding: 5px;
+#filters label {
+    font-weight: bold;
+}
+
+#filters select, #filters input, #filters button {
+    padding: 8px;
     font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #457b9d;
+    outline: none;
 }
 
-table {
+#filters button {
+    background-color: #1d3557;
+    color: #f1faee;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#filters button:hover {
+    background-color: #457b9d;
+}
+
+/* Table Section */
+#screenings {
+    margin-top: 20px;
+}
+
+#screenings-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-th, td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #dddddd;
-}
-
-th {
-    background-color: #2c3e50;
+#screenings-table thead {
+    background-color: #457b9d;
     color: #ffffff;
-    cursor: pointer;
 }
 
-tr:hover {
-    background-color: #f1f1f1;
+#screenings-table th, #screenings-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+#screenings-table th {
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#screenings-table th:hover {
+    background-color: #1d3557;
+}
+
+#screenings-table tbody tr:nth-child(even) {
+    background-color: #f1faee;
+}
+
+#screenings-table tbody tr:hover {
+    background-color: #a8dadc;
+}
+
+#screenings-table td {
+    color: #333333;
 }
