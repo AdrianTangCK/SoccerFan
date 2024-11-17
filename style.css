@@ -50,10 +50,8 @@ body {
     gap: 15px;
     margin-bottom: 20px;
     padding: 15px;
-    background-color: #a8dadc;
+    background-color: #a8dadc; /* Solid background color for better readability */
     border-radius: 8px;
-    background-image: url('images/field-texture.jpg'); /* Light soccer field texture */
-    background-size: cover;
 }
 
 #filters label {
