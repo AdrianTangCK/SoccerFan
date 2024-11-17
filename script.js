@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     const screeningsBody = document.getElementById('screenings-body');
+    const fixturesList = document.getElementById('fixtures-list');
     const zoneFilter = document.getElementById('zone-filter');
     const capacityFilter = document.getElementById('capacity-filter');
     const priceMaxFilter = document.getElementById('price-max-filter');
 
     let screeningsData = [];
+    let fixturesData = [];
 
-    // Load and display data from Excel file
-    fetch('screenings.xlsx') // Ensure screenings.xlsx is available in the root folder
+    // Load screenings data from Excel
+    fetch('screenings.xlsx')
         .then(response => response.arrayBuffer())
         .then(data => {
             const workbook = XLSX.read(data, { type: 'array' });
@@ -17,6 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             screeningsData = jsonData; // Save the raw data for filtering
             displayScreenings(screeningsData);
+        });
+
+    // Load fixtures data from Excel
+    fetch('fixtures.xlsx')
+        .then(response => response.arrayBuffer())
+        .then(data => {
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+            const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+            fixturesData = jsonData; // Save fixtures data
+            displayUpcomingFixtures(fixturesData);
         });
 
     // Function to display screenings in the table
@@ -43,17 +58,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Capacity
             const capacityTd = document.createElement('td');
-            capacityTd.textContent = screening.Capacity;
+            capacityTd.textContent = screening.Capacity || 'N/A';
             capacityTd.style.textAlign = 'center';
             tr.appendChild(capacityTd);
 
             // Estimated Price Per Pax (SGD)
             const priceTd = document.createElement('td');
-            priceTd.textContent = screening["Est. Price Per Pax (SGD)"];
+            priceTd.textContent = screening["Est. Price Per Pax (SGD)"] || 'N/A';
             priceTd.style.textAlign = 'center';
             tr.appendChild(priceTd);
 
             screeningsBody.appendChild(tr);
+        });
+    }
+
+    // Function to display upcoming fixtures in the list
+    function displayUpcomingFixtures(fixtures) {
+        fixturesList.innerHTML = ''; // Clear existing data
+
+        // Get today's date
+        const today = new Date();
+        const next7Days = new Date();
+        next7Days.setDate(today.getDate() + 7);
+
+        const filteredFixtures = fixtures.filter((fixture) => {
+            const fixtureDate = new Date(fixture.Date);
+            return fixtureDate >= today && fixtureDate <= next7Days;
+        });
+
+        if (filteredFixtures.length === 0) {
+            const noFixturesMessage = document.createElement('li');
+            noFixturesMessage.textContent = 'No upcoming fixtures in the next 7 days.';
+            noFixturesMessage.style.color = '#6c757d';
+            fixturesList.appendChild(noFixturesMessage);
+            return;
+        }
+
+        filteredFixtures.forEach((fixture) => {
+            const listItem = document.createElement('li');
+
+            const dateSpan = document.createElement('span');
+            dateSpan.textContent = `${fixture.Date} - ${fixture.Time}`;
+            dateSpan.classList.add('fixture-date');
+
+            const eventSpan = document.createElement('span');
+            eventSpan.textContent = fixture.Fixture;
+            eventSpan.classList.add('fixture-event');
+
+            const channelSpan = document.createElement('span');
+            channelSpan.textContent = fixture.Channel;
+            channelSpan.classList.add('fixture-channel');
+
+            listItem.appendChild(dateSpan);
+            listItem.appendChild(eventSpan);
+            listItem.appendChild(channelSpan);
+
+            fixturesList.appendChild(listItem);
         });
     }
 
