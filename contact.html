@@ -36,9 +36,34 @@
 
     <section id="contact-content">
         <p>
-            If you have any questions, suggestions, or feedback, feel free to reach out to us at:
-            <strong>contact@soccerwatch.sg</strong>.
+            If you have questions, wish to report incorrect information, want your venue to be listed, or have suggestions for future enhancements, please fill out the form below.
         </p>
+        <form action="submit_feedback.php" method="POST" id="feedback-form">
+            <!-- Name Field -->
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <!-- Email Field -->
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <!-- Purpose Dropdown -->
+            <label for="purpose">Reason for Contact:</label>
+            <select id="purpose" name="purpose" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="location_owner">I am a location owner</option>
+                <option value="report_error">Report incorrect information</option>
+                <option value="suggestion">Suggest a future enhancement</option>
+                <option value="other">Other</option>
+            </select>
+
+            <!-- Message Field -->
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="6" placeholder="Provide details about your request or feedback..." required></textarea>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit Feedback</button>
+        </form>
     </section>
 
     <!-- Footer -->
