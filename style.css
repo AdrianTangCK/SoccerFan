@@ -108,13 +108,13 @@ body {
     text-align: right;
 }
 
-/* Disclaimer Alignment */
-#upcoming-fixtures .fixtures-disclaimer,
-footer p {
-    text-align: left;
+/* Disclaimer Styling */
+.disclaimer {
     margin-top: 15px;
     font-size: 0.9em;
     color: #6c757d;
+    text-align: left; /* Align text to the left */
+    line-height: 1.5;
 }
 
 /* View Full Fixtures Link */
