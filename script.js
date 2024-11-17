@@ -104,15 +104,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 weekday: 'short',
                 day: '2-digit',
                 month: 'short',
+                year: 'numeric', // Include the year
             });
             const formattedTime = date.toLocaleTimeString('en-SG', {
                 hour: '2-digit',
                 minute: '2-digit',
-                hour12: true,
+                hour12: true, // AM/PM format
             });
 
             const dateSpan = document.createElement('span');
-            dateSpan.textContent = `${formattedDate}, ${formattedTime}`;
+            dateSpan.textContent = `${formattedDate}, ${formattedTime}`; // Full format
             dateSpan.classList.add('fixture-date');
 
             const eventSpan = document.createElement('span');
