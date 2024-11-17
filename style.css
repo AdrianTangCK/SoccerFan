@@ -13,6 +13,38 @@ body {
     padding: 20px;
 }
 
+/* Navigation Bar */
+.navbar {
+    background-color: #1d3557; /* Dark blue background */
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; /* Space links evenly */
+}
+
+.navbar ul li {
+    margin: 0;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #ffffff; /* White text for contrast */
+    font-size: 1em;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #a8dadc; /* Light blue on hover */
+}
+
 /* Hero Banner */
 .hero-banner {
     background-image: url('images/hero-banner.jpg'); /* Background image for the hero banner */
