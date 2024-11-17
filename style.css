@@ -75,218 +75,28 @@ body {
     color: #f1faee;
 }
 
-/* Upcoming Fixtures Section */
-#upcoming-fixtures {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-left: 5px solid #1d3557;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-#upcoming-fixtures h2 {
-    margin-bottom: 15px;
-    color: #1d3557;
-    font-size: 1.8em;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-bottom: 2px solid #1d3557;
-    padding-bottom: 5px;
-    display: inline-block;
-}
-
-#fixtures-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#fixtures-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 15px;
-    margin-bottom: 10px;
-    background-color: #e9ecef;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-}
-
-#fixtures-list li:hover {
-    background-color: #d1e7f0; /* Light hover effect */
-}
-
-.fixture-date {
-    font-weight: bold;
-    font-size: 1.1em;
-    color: #1d3557;
-    width: 25%; /* Ensures consistent layout */
-}
-
-.fixture-event {
-    flex-grow: 1;
-    margin-left: 10px;
-    color: #333333;
-    font-size: 1.1em;
-    font-weight: 500;
-}
-
-.fixture-channel {
-    color: #457b9d;
-    font-size: 1em;
-    font-style: italic;
-    width: 25%;
-    text-align: right;
-}
-
-/* Disclaimer Styling */
-.disclaimer {
-    margin-top: 15px;
-    text-align: left; /* Align disclaimers to the left */
-    line-height: 1.5;
-}
-
-/* Learning Disclaimer Styling */
-.learning-disclaimer {
-    color: #f1f1f1; /* Light gray for readability on dark background */
-    font-size: 1em; /* Slightly larger font size */
-}
-
-/* EPL Disclaimer Styling */
-.epl-disclaimer {
-    color: #005f99; /* Darker blue for contrast */
-    font-size: 0.9em; /* Default font size */
-    margin-top: 20px;
-}
-
-/* View Full Fixtures Link */
-.view-full-fixtures {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 1em;
-    font-weight: bold;
-    color: #1d3557;
-    text-decoration: none;
-    border: 1px solid #1d3557;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.view-full-fixtures:hover {
-    background-color: #1d3557;
-    color: #f1faee;
-}
-
-/* Filter Section */
-#filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #a8dadc;
-    border-radius: 8px;
-}
-
-#filters label {
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-}
-
-.icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-}
-
-#filters select, #filters input, #filters button {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 4px;
-    border: 1px solid #457b9d;
-    outline: none;
-}
-
-#filters button {
-    background-color: #1d3557;
-    color: #f1faee;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#filters button:hover {
-    background-color: #457b9d;
-}
-
-/* Table Section */
-#screenings, #full-fixtures {
-    margin-top: 20px;
-}
-
-#screenings-table, #fixtures-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-#screenings-table thead, #fixtures-table thead {
-    background-color: #457b9d;
-    color: #ffffff;
-}
-
-#screenings-table th, #fixtures-table th,
-#screenings-table td, #fixtures-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #dddddd;
-}
-
-/* Center alignment for Capacity and Price columns */
-#screenings-table td:nth-child(4), 
-#screenings-table th:nth-child(4),
-#screenings-table td:nth-child(5), 
-#screenings-table th:nth-child(5) {
+/* Contact Page Intro Text */
+.intro-text {
     text-align: center;
-}
-
-/* General Table Styling */
-#screenings-table th, #fixtures-table th {
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#screenings-table th:hover, #fixtures-table th:hover {
-    background-color: #1d3557;
-}
-
-#screenings-table tbody tr:nth-child(even),
-#fixtures-table tbody tr:nth-child(even) {
-    background-color: rgba(241, 250, 238, 0.7);
-}
-
-#screenings-table tbody tr:hover,
-#fixtures-table tbody tr:hover {
-    background-color: #a8dadc;
-}
-
-#screenings-table td, #fixtures-table td {
+    font-size: 1.2em;
     color: #333333;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
 }
 
-#screenings-table td a, #fixtures-table td a {
-    color: #1d3557;
+/* Email Link Styling */
+.email-link {
+    color: #1d3557; /* Dark blue for visibility */
+    font-weight: bold;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-#screenings-table td a:hover, #fixtures-table td a:hover {
+.email-link:hover {
+    color: #457b9d; /* Lighter blue on hover */
     text-decoration: underline;
 }
 
@@ -307,4 +117,17 @@ footer p {
     padding: 0;
     text-align: left; /* Align footer disclaimer to the left */
     color: #f1f1f1; /* Light gray for readability */
+}
+
+/* Disclaimer Styling */
+.disclaimer {
+    margin-top: 15px;
+    text-align: left; /* Align disclaimers to the left */
+    line-height: 1.5;
+}
+
+/* Learning Disclaimer Styling */
+.learning-disclaimer {
+    color: #f1f1f1; /* Light gray for readability on dark background */
+    font-size: 1em; /* Slightly larger font size */
 }
