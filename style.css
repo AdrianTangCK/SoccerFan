@@ -112,9 +112,19 @@ body {
 .disclaimer {
     margin-top: 15px;
     font-size: 0.9em;
-    color: #6c757d;
-    text-align: left; /* Align text to the left */
+    text-align: left; /* Align disclaimers to the left */
     line-height: 1.5;
+}
+
+/* Learning Disclaimer Styling */
+.learning-disclaimer {
+    color: #f1f1f1; /* Light gray for readability on dark background */
+}
+
+/* EPL Disclaimer Styling */
+.epl-disclaimer {
+    color: #d1e7f0; /* Softer blue for a distinct appearance */
+    margin-top: 20px;
 }
 
 /* View Full Fixtures Link */
@@ -263,5 +273,5 @@ footer p {
     margin: 0;
     padding: 0;
     text-align: left; /* Align footer disclaimer to the left */
-    color: #f1f1f1; /* Light color for readability */
+    color: #f1f1f1; /* Light gray for readability */
 }
