@@ -47,7 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const locationTd = document.createElement('td');
             const locationLink = document.createElement('a');
             locationLink.textContent = screening.Location;
-            locationLink.href = `https://www.google.com/maps?q=${encodeURIComponent(screening.Address)}`;
+            // Construct Google Maps query with location name
+            locationLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(screening.Location + ', Singapore')}`;
             locationLink.target = "_blank"; // Open in a new tab
             locationLink.style.color = "#1d3557";
             locationLink.style.textDecoration = "underline";
