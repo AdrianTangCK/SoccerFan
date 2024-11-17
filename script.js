@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Estimated Price Per Pax (SGD)
             const priceTd = document.createElement('td');
-            priceTd.textContent = screening["Est. Price Per Pax (SGD)"] || 'N/A';
+            const price = parseFloat(screening["Est. Price Per Pax (SGD)"]);
+            priceTd.textContent = price === 0 ? 'Free' : price || 'N/A';
             priceTd.style.textAlign = 'center';
             tr.appendChild(priceTd);
 
@@ -97,8 +98,20 @@ document.addEventListener('DOMContentLoaded', () => {
         filteredFixtures.forEach((fixture) => {
             const listItem = document.createElement('li');
 
+            const date = new Date(`${fixture.Date} ${fixture.Time}`);
+            const formattedDate = date.toLocaleDateString('en-SG', {
+                weekday: 'short', // e.g., Sat
+                day: '2-digit',   // e.g., 23
+                month: 'short',   // e.g., Nov
+            });
+            const formattedTime = date.toLocaleTimeString('en-SG', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true,     // e.g., 01:30 AM
+            });
+
             const dateSpan = document.createElement('span');
-            dateSpan.textContent = `${fixture.Date} - ${fixture.Time}`;
+            dateSpan.textContent = `${formattedDate}, ${formattedTime}`;
             dateSpan.classList.add('fixture-date');
 
             const eventSpan = document.createElement('span');
