@@ -96,12 +96,10 @@ body {
 #screenings-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #ffffff;
+    background-color: #ffffff; /* Solid white background for simplicity */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
-    background-image: url('images/field-background.jpg'); /* Subtle background for the table */
-    background-size: cover;
 }
 
 #screenings-table thead {

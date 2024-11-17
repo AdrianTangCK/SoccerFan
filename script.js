@@ -42,14 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
             locationName.appendChild(locationLink);
             tr.appendChild(locationName);
 
-            // Make Address clickable, linking to Google Maps
+            // Keep Address as plain text (no link)
             const address = document.createElement('td');
-            const addressLink = document.createElement('a');
-            addressLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(row.address)}`;
-            addressLink.textContent = row.address;
-            addressLink.target = '_blank';  // Open in a new tab
-            addressLink.style.color = '#1d3557';  // Optional: link color
-            address.appendChild(addressLink);
+            address.textContent = row.address;
             tr.appendChild(address);
 
             const zone = document.createElement('td');
