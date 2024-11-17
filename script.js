@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.getElementById('screenings-body');
     const fixturesList = document.getElementById('fixtures-list');
 
-    // Load and display upcoming fixtures
+    // Load and display upcoming fixtures for the next 7 days
     fetch('fixtures.xlsx')
         .then(response => response.arrayBuffer())
         .then(data => {
@@ -13,25 +13,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Extract fixtures from Excel
             const fixturesData = jsonData.slice(1).map(row => ({
-                date: row[0], // Date column
-                time: row[1], // Time column
+                date: new Date(`${row[0]} ${row[1]}`), // Combine Date and Time columns
                 event: row[2], // Fixture column
                 channel: row[3] // Channel column
             }));
 
-            displayFixtures(fixturesData);
+            // Filter fixtures for the next 7 days
+            const now = new Date();
+            const sevenDaysLater = new Date();
+            sevenDaysLater.setDate(now.getDate() + 7);
+
+            const upcomingFixtures = fixturesData.filter(fixture => {
+                return fixture.date >= now && fixture.date <= sevenDaysLater;
+            });
+
+            displayFixtures(upcomingFixtures);
         });
 
     // Function to display fixtures
     function displayFixtures(fixtures) {
         fixturesList.innerHTML = ''; // Clear existing fixtures
 
+        if (fixtures.length === 0) {
+            const noFixturesMessage = document.createElement('li');
+            noFixturesMessage.textContent = 'No fixtures scheduled for the next 7 days.';
+            fixturesList.appendChild(noFixturesMessage);
+            return;
+        }
+
         fixtures.forEach(fixture => {
             const li = document.createElement('li');
 
             const dateSpan = document.createElement('span');
             dateSpan.className = 'fixture-date';
-            dateSpan.textContent = `${fixture.date} ${fixture.time}`;
+            dateSpan.textContent = fixture.date.toLocaleString('en-SG', {
+                weekday: 'short',
+                day: 'numeric',
+                month: 'short',
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true
+            });
 
             const eventSpan = document.createElement('span');
             eventSpan.className = 'fixture-event';
