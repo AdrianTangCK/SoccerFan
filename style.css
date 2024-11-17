@@ -117,6 +117,25 @@ footer p {
     color: #6c757d;
 }
 
+/* View Full Fixtures Link */
+.view-full-fixtures {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #1d3557;
+    text-decoration: none;
+    border: 1px solid #1d3557;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-full-fixtures:hover {
+    background-color: #1d3557;
+    color: #f1faee;
+}
+
 /* Filter Section */
 #filters {
     display: flex;
@@ -161,11 +180,11 @@ footer p {
 }
 
 /* Table Section */
-#screenings {
+#screenings, #full-fixtures {
     margin-top: 20px;
 }
 
-#screenings-table {
+#screenings-table, #fixtures-table {
     width: 100%;
     border-collapse: collapse;
     background-color: #ffffff;
@@ -174,57 +193,57 @@ footer p {
     overflow: hidden;
 }
 
-#screenings-table thead {
+#screenings-table thead, #fixtures-table thead {
     background-color: #457b9d;
     color: #ffffff;
 }
 
-#screenings-table th, #screenings-table td {
+#screenings-table th, #fixtures-table th,
+#screenings-table td, #fixtures-table td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #dddddd;
 }
 
-/* Center alignment for Capacity column */
+/* Center alignment for Capacity and Price columns */
 #screenings-table td:nth-child(4), 
-#screenings-table th:nth-child(4) {
-    text-align: center;
-}
-
-/* Center alignment for Price column */
+#screenings-table th:nth-child(4),
 #screenings-table td:nth-child(5), 
 #screenings-table th:nth-child(5) {
     text-align: center;
 }
 
-#screenings-table th {
+/* General Table Styling */
+#screenings-table th, #fixtures-table th {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-#screenings-table th:hover {
+#screenings-table th:hover, #fixtures-table th:hover {
     background-color: #1d3557;
 }
 
-#screenings-table tbody tr:nth-child(even) {
+#screenings-table tbody tr:nth-child(even),
+#fixtures-table tbody tr:nth-child(even) {
     background-color: rgba(241, 250, 238, 0.7);
 }
 
-#screenings-table tbody tr:hover {
+#screenings-table tbody tr:hover,
+#fixtures-table tbody tr:hover {
     background-color: #a8dadc;
 }
 
-#screenings-table td {
+#screenings-table td, #fixtures-table td {
     color: #333333;
 }
 
-#screenings-table td a {
+#screenings-table td a, #fixtures-table td a {
     color: #1d3557;
     text-decoration: none;
 }
 
-#screenings-table td a:hover {
+#screenings-table td a:hover, #fixtures-table td a:hover {
     text-decoration: underline;
 }
 
