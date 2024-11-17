@@ -108,6 +108,15 @@ body {
     text-align: right;
 }
 
+/* Alignment for disclaimers */
+#upcoming-fixtures .fixtures-disclaimer,
+footer p {
+    text-align: left; /* Align disclaimers to the left */
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
 /* Filter Section */
 #filters {
     display: flex;
@@ -174,6 +183,18 @@ body {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #dddddd;
+}
+
+/* Center alignment for Capacity column */
+#screenings-table td:nth-child(4), 
+#screenings-table th:nth-child(4) {
+    text-align: center;
+}
+
+/* Center alignment for Price column */
+#screenings-table td:nth-child(5), 
+#screenings-table th:nth-child(5) {
+    text-align: center;
 }
 
 #screenings-table th {
