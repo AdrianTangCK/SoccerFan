@@ -47,7 +47,7 @@ body {
 
 /* Hero Banner */
 .hero-banner {
-    background-image: url('images/hero-banner.jpg'); /* Background image for the hero banner */
+    background-image: url('images/hero-banner.jpg'); /* Replace with your image */
     background-size: cover;
     background-position: center;
     color: #f1faee;
@@ -73,6 +73,44 @@ body {
 .hero-banner p {
     font-size: 1.2em;
     color: #f1faee;
+}
+
+/* Fixtures Table */
+#fixtures-table, #screenings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+#fixtures-table th, #fixtures-table td,
+#screenings-table th, #screenings-table td {
+    padding: 12px;
+    border: 1px solid #ddd; /* Add table borders */
+    text-align: left;
+}
+
+#fixtures-table th, #screenings-table th {
+    background-color: #457b9d; /* Blue background for headers */
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+}
+
+#fixtures-table tbody tr:nth-child(even),
+#screenings-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternating row colors */
+}
+
+#fixtures-table tbody tr:hover,
+#screenings-table tbody tr:hover {
+    background-color: #eaf4fa; /* Hover effect */
+}
+
+#screenings-table td:nth-child(4), #screenings-table td:nth-child(5) {
+    text-align: center; /* Center align capacity and price columns */
 }
 
 /* Upcoming Fixtures Section */
@@ -183,77 +221,25 @@ body {
     background-color: #457b9d;
 }
 
-/* Screenings Table */
-#screenings-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-#screenings-table thead {
-    background-color: #457b9d;
-    color: #ffffff;
-}
-
-#screenings-table th,
-#screenings-table td {
-    padding: 12px;
+/* Disclaimers */
+.disclaimer {
+    margin-top: 15px;
     text-align: left;
-    border-bottom: 1px solid #dddddd;
+    line-height: 1.5;
 }
 
-#screenings-table th {
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.epl-disclaimer {
+    color: #005f99; /* Darker blue for contrast */
+    font-size: 0.9em;
+    margin-top: 20px;
 }
 
-#screenings-table th:hover {
-    background-color: #1d3557;
+.learning-disclaimer {
+    color: #f1f1f1; /* Light gray for readability on dark background */
+    font-size: 1em;
 }
 
-#screenings-table tbody tr:nth-child(even) {
-    background-color: rgba(241, 250, 238, 0.7);
-}
-
-#screenings-table tbody tr:hover {
-    background-color: #a8dadc;
-}
-
-#screenings-table td:nth-child(4),
-#screenings-table td:nth-child(5) {
-    text-align: center;
-}
-
-/* Contact Page Intro Text */
-.intro-text {
-    text-align: center;
-    font-size: 1.2em;
-    color: #333333;
-    margin-bottom: 20px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.8;
-}
-
-/* Email Link Styling */
-.email-link {
-    color: #1d3557; /* Dark blue for visibility */
-    font-weight: bold;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.email-link:hover {
-    color: #457b9d; /* Lighter blue on hover */
-    text-decoration: underline;
-}
-
-/* Footer Section */
+/* Footer */
 footer {
     margin-top: 40px;
     background-color: #457b9d; /* Dark blue background */
@@ -272,14 +258,21 @@ footer p {
     color: #f1f1f1; /* Light gray for readability */
 }
 
-/* Disclaimer Styling */
-.disclaimer {
-    margin-top: 15px;
-    text-align: left; /* Align disclaimers to the left */
-    line-height: 1.5;
+/* View Full Fixtures Button */
+.view-full-fixtures {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #1d3557;
+    text-decoration: none;
+    border: 1px solid #1d3557;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.learning-disclaimer {
-    color: #f1f1f1; /* Light gray for readability on dark background */
-    font-size: 1em; /* Slightly larger font size */
+.view-full-fixtures:hover {
+    background-color: #1d3557;
+    color: #f1faee;
 }

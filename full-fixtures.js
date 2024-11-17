@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const fixturesBody = document.getElementById('fixtures-body');
+    const eplDisclaimer = document.querySelector('.epl-disclaimer');
+
+    // Initially hide the disclaimer
+    eplDisclaimer.style.display = 'none';
 
     // Load and display the full fixtures from the Excel file
     fetch('fixtures.xlsx') // Ensure fixtures.xlsx is available in the root folder
@@ -34,6 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
             td.style.color = '#6c757d';
             noFixturesMessage.appendChild(td);
             fixturesBody.appendChild(noFixturesMessage);
+
+            // Hide disclaimer if no fixtures are available
+            eplDisclaimer.style.display = 'none';
             return;
         }
 
@@ -58,5 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             fixturesBody.appendChild(tr);
         });
+
+        // Show disclaimer if fixtures are displayed
+        eplDisclaimer.style.display = 'block';
     }
 });
