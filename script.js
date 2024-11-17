@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             disclaimer.style.marginTop = '15px';
             disclaimer.style.fontSize = '0.9em';
             disclaimer.style.color = '#6c757d';
-            disclaimer.style.textAlign = 'center';
+            disclaimer.style.textAlign = 'left'; // Align disclaimer to the left
             fixturesSection.appendChild(disclaimer);
         }
     }
@@ -144,10 +144,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const capacity = document.createElement('td');
             capacity.textContent = row.capacity;
+            capacity.style.textAlign = 'center'; // Center align capacity
             tr.appendChild(capacity);
 
             const price = document.createElement('td');
             price.textContent = row.price;
+            price.style.textAlign = 'center'; // Center align price
             tr.appendChild(price);
 
             tableBody.appendChild(tr);

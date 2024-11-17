@@ -108,10 +108,10 @@ body {
     text-align: right;
 }
 
-/* Alignment for disclaimers */
+/* Disclaimer Alignment */
 #upcoming-fixtures .fixtures-disclaimer,
 footer p {
-    text-align: left; /* Align disclaimers to the left */
+    text-align: left;
     margin-top: 15px;
     font-size: 0.9em;
     color: #6c757d;
@@ -231,7 +231,7 @@ footer p {
 /* Footer Section */
 footer {
     margin-top: 40px;
-    background-color: #1d3557;
+    background-color: #457b9d; /* Lighter background */
     color: #f1faee;
     text-align: center;
     padding: 20px;
@@ -243,4 +243,6 @@ footer {
 footer p {
     margin: 0;
     padding: 0;
+    text-align: left; /* Align footer disclaimer to the left */
+    color: #fdfdfd;
 }
