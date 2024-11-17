@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let screeningsData = [];
     let fixturesData = [];
+    let currentSortedColumn = null;
+    let currentSortDirection = null; // 'asc' or 'desc'
 
     // Load screenings data from Excel
     fetch('screenings.xlsx')
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Location
             const locationTd = document.createElement('td');
-            locationTd.textContent = screening.Location; // Ensure the Excel column is named "Location"
+            locationTd.textContent = screening.Location;
             tr.appendChild(locationTd);
 
             // Address
@@ -62,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             capacityTd.style.textAlign = 'center';
             tr.appendChild(capacityTd);
 
-            // Estimated Price Per Pax (SGD)
+            // Price
             const priceTd = document.createElement('td');
             const price = parseFloat(screening["Est. Price Per Pax (SGD)"]);
             priceTd.textContent = price === 0 ? 'Free' : price || 'N/A';
@@ -77,12 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayUpcomingFixtures(fixtures) {
         fixturesList.innerHTML = ''; // Clear existing data
 
-        // Get today's date
         const today = new Date();
         const next7Days = new Date();
         next7Days.setDate(today.getDate() + 7);
 
-        const filteredFixtures = fixtures.filter((fixture) => {
+        const filteredFixtures = fixtures.filter(fixture => {
             const fixtureDate = new Date(fixture.Date);
             return fixtureDate >= today && fixtureDate <= next7Days;
         });
@@ -95,19 +96,19 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        filteredFixtures.forEach((fixture) => {
+        filteredFixtures.forEach(fixture => {
             const listItem = document.createElement('li');
 
             const date = new Date(`${fixture.Date} ${fixture.Time}`);
             const formattedDate = date.toLocaleDateString('en-SG', {
-                weekday: 'short', // e.g., Sat
-                day: '2-digit',   // e.g., 23
-                month: 'short',   // e.g., Nov
+                weekday: 'short',
+                day: '2-digit',
+                month: 'short',
             });
             const formattedTime = date.toLocaleTimeString('en-SG', {
                 hour: '2-digit',
                 minute: '2-digit',
-                hour12: true,     // e.g., 01:30 AM
+                hour12: true,
             });
 
             const dateSpan = document.createElement('span');
@@ -136,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const minCapacity = parseInt(capacityFilter.value, 10) || 0;
         const maxPrice = parseFloat(priceMaxFilter.value) || Infinity;
 
-        const filteredData = screeningsData.filter((screening) => {
+        const filteredData = screeningsData.filter(screening => {
             const capacity = parseInt(screening.Capacity, 10) || 0;
             const price = parseFloat(screening["Est. Price Per Pax (SGD)"]) || 0;
 
@@ -162,17 +163,45 @@ document.addEventListener('DOMContentLoaded', () => {
     window.sortTable = function (columnIndex) {
         const tableRows = Array.from(screeningsBody.rows);
 
-        const isNumeric = columnIndex >= 3; // Assume columns 3 and 4 are numeric (Capacity, Price)
+        const isNumeric = columnIndex >= 3; // Capacity and Price are numeric
+        let sortDirection = 'asc';
+        if (currentSortedColumn === columnIndex && currentSortDirection === 'asc') {
+            sortDirection = 'desc';
+        }
+
         const sortedRows = tableRows.sort((a, b) => {
             const aText = a.cells[columnIndex].textContent.trim();
             const bText = b.cells[columnIndex].textContent.trim();
 
             return isNumeric
-                ? parseFloat(aText) - parseFloat(bText)
-                : aText.localeCompare(bText);
+                ? (sortDirection === 'asc'
+                    ? parseFloat(aText) - parseFloat(bText)
+                    : parseFloat(bText) - parseFloat(aText))
+                : (sortDirection === 'asc'
+                    ? aText.localeCompare(bText)
+                    : bText.localeCompare(aText));
         });
 
-        screeningsBody.innerHTML = ''; // Clear table body
-        sortedRows.forEach((row) => screeningsBody.appendChild(row));
+        screeningsBody.innerHTML = '';
+        sortedRows.forEach(row => screeningsBody.appendChild(row));
+
+        updateSortIcons(columnIndex, sortDirection);
+        currentSortedColumn = columnIndex;
+        currentSortDirection = sortDirection;
     };
+
+    // Function to update sorting icons
+    function updateSortIcons(columnIndex, sortDirection) {
+        for (let i = 0; i < 5; i++) {
+            const icon = document.getElementById(`sort-icon-${i}`);
+            if (icon) {
+                icon.textContent = '';
+            }
+        }
+
+        const activeIcon = document.getElementById(`sort-icon-${columnIndex}`);
+        if (activeIcon) {
+            activeIcon.textContent = sortDirection === 'asc' ? '▲' : '▼';
+        }
+    }
 });

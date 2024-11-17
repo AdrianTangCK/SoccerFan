@@ -75,23 +75,6 @@ body {
     color: #f1faee;
 }
 
-/* About Page Sections */
-#about-content, #about-mission, #about-purpose, #about-benefits {
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #ffffff;
-    border-left: 5px solid #1d3557;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-#about-content h2, #about-mission h2, #about-purpose h2, #about-benefits h2 {
-    color: #1d3557;
-    font-size: 1.8em;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
 /* Fixtures Table */
 #fixtures-table, #screenings-table {
     width: 100%;
@@ -114,6 +97,7 @@ body {
     color: #ffffff;
     font-weight: bold;
     text-align: left;
+    position: relative; /* For sort arrows */
 }
 
 #fixtures-table tbody tr:nth-child(even),
@@ -128,6 +112,20 @@ body {
 
 #screenings-table td:nth-child(4), #screenings-table td:nth-child(5) {
     text-align: center; /* Center align capacity and price columns */
+}
+
+/* Sorting Arrows */
+th span {
+    margin-left: 5px;
+    font-size: 0.8em;
+    color: #ffffff;
+    vertical-align: middle;
+}
+
+th span::before {
+    content: '';
+    display: inline-block;
+    margin-right: 2px;
 }
 
 /* Upcoming Fixtures Section */

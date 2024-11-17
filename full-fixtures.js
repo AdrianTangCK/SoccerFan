@@ -12,18 +12,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const workbook = XLSX.read(data, { type: 'array' });
             const firstSheetName = workbook.SheetNames[0];
             const worksheet = workbook.Sheets[firstSheetName];
-            const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+            const jsonData = XLSX.utils.sheet_to_json(worksheet);
 
-            // Extract and display full fixtures
-            const fullFixtures = jsonData.slice(1).map(row => ({
-                date: row[0], // Date column
-                time: row[1], // Time column
-                fixture: row[2], // Fixture column
-                channel: row[3] // Channel column
-            }));
-
-            displayFullFixtures(fullFixtures);
+            displayFullFixtures(jsonData);
         });
+
+    // Function to format the date
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-SG', {
+            weekday: 'short', // e.g., Sat
+            day: '2-digit',   // e.g., 23
+            month: 'short',   // e.g., Nov
+            year: 'numeric',  // e.g., 2024
+        });
+    }
 
     // Function to display the full fixtures
     function displayFullFixtures(fixtures) {
@@ -44,23 +47,27 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        fixtures.forEach(fixture => {
+        fixtures.forEach((fixture) => {
             const tr = document.createElement('tr');
 
+            // Date
             const dateTd = document.createElement('td');
-            dateTd.textContent = fixture.date;
+            dateTd.textContent = formatDate(fixture.Date); // Format the date
             tr.appendChild(dateTd);
 
+            // Time
             const timeTd = document.createElement('td');
-            timeTd.textContent = fixture.time;
+            timeTd.textContent = fixture.Time || 'N/A';
             tr.appendChild(timeTd);
 
+            // Fixture
             const fixtureTd = document.createElement('td');
-            fixtureTd.textContent = fixture.fixture;
+            fixtureTd.textContent = fixture.Fixture || 'N/A';
             tr.appendChild(fixtureTd);
 
+            // Channel
             const channelTd = document.createElement('td');
-            channelTd.textContent = fixture.channel;
+            channelTd.textContent = fixture.Channel || 'N/A';
             tr.appendChild(channelTd);
 
             fixturesBody.appendChild(tr);
