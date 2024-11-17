@@ -111,7 +111,6 @@ body {
 /* Disclaimer Styling */
 .disclaimer {
     margin-top: 15px;
-    font-size: 0.9em;
     text-align: left; /* Align disclaimers to the left */
     line-height: 1.5;
 }
@@ -119,11 +118,13 @@ body {
 /* Learning Disclaimer Styling */
 .learning-disclaimer {
     color: #f1f1f1; /* Light gray for readability on dark background */
+    font-size: 1em; /* Slightly larger font size */
 }
 
 /* EPL Disclaimer Styling */
 .epl-disclaimer {
-    color: #d1e7f0; /* Softer blue for a distinct appearance */
+    color: #005f99; /* Darker blue for contrast */
+    font-size: 0.9em; /* Default font size */
     margin-top: 20px;
 }
 
