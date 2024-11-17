@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fixturesBody = document.getElementById('fixtures-body');
 
     // Load and display the full fixtures from the Excel file
-    fetch('fixtures.xlsx')
+    fetch('fixtures.xlsx') // Ensure fixtures.xlsx is available in the root folder
         .then(response => response.arrayBuffer())
         .then(data => {
             const workbook = XLSX.read(data, { type: 'array' });
@@ -58,20 +58,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
             fixturesBody.appendChild(tr);
         });
-
-        addEPLDisclaimer(); // Add EPL disclaimer if fixtures are listed
-    }
-
-    // Function to add the EPL disclaimer dynamically
-    function addEPLDisclaimer() {
-        const existingDisclaimer = document.querySelector('.epl-disclaimer');
-        if (!existingDisclaimer) {
-            const disclaimer = document.createElement('p');
-            disclaimer.className = 'disclaimer epl-disclaimer';
-            disclaimer.textContent =
-                'Disclaimer: The English Premier League (EPL) fixtures schedule provided by StarHub TV is for informational purposes only. All fixtures, dates, and times are subject to change based on official EPL announcements and broadcast rights agreements.';
-            const fullFixturesSection = document.getElementById('full-fixtures');
-            fullFixturesSection.appendChild(disclaimer);
-        }
     }
 });
