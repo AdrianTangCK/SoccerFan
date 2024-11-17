@@ -250,8 +250,8 @@ body {
 /* Footer Section */
 footer {
     margin-top: 40px;
-    background-color: #457b9d; /* Lighter background */
-    color: #ffffff; /* Bright white for better contrast */
+    background-color: #457b9d; /* Dark blue background */
+    color: #ffffff; /* Bright white for readability */
     text-align: center;
     padding: 20px;
     border-radius: 8px;
@@ -263,5 +263,5 @@ footer p {
     margin: 0;
     padding: 0;
     text-align: left; /* Align footer disclaimer to the left */
-    color: #ffffff; /* Bright white text for readability */
+    color: #f1f1f1; /* Light color for readability */
 }
