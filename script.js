@@ -45,7 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Location
             const locationTd = document.createElement('td');
-            locationTd.textContent = screening.Location;
+            const locationLink = document.createElement('a');
+            locationLink.textContent = screening.Location;
+            locationLink.href = `https://www.google.com/maps?q=${encodeURIComponent(screening.Address)}`;
+            locationLink.target = "_blank"; // Open in a new tab
+            locationLink.style.color = "#1d3557";
+            locationLink.style.textDecoration = "underline";
+            locationTd.appendChild(locationLink);
             tr.appendChild(locationTd);
 
             // Address
