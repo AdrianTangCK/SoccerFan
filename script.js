@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const tableBody = document.getElementById('screenings-body');
     const fixturesList = document.getElementById('fixtures-list');
+    const tableBody = document.getElementById('screenings-body');
+    let screeningsData = []; // To store parsed table data
+    let filteredData = [];   // To store filtered table data
 
     // Load and display upcoming fixtures for the next 7 days
     fetch('fixtures.xlsx')
@@ -37,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fixtures.length === 0) {
             const noFixturesMessage = document.createElement('li');
             noFixturesMessage.textContent = 'No fixtures scheduled for the next 7 days.';
+            noFixturesMessage.style.textAlign = 'center';
+            noFixturesMessage.style.color = '#6c757d';
             fixturesList.appendChild(noFixturesMessage);
             return;
         }
@@ -81,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
             // Convert JSON data and remove header row
-            const screeningsData = jsonData.slice(1).map(row => ({
+            screeningsData = jsonData.slice(1).map(row => ({
                 name: row[0],
                 address: row[1],
                 zone: row[2],
@@ -89,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 price: parseInt(row[4]) || 0 // Price column as a number
             }));
 
-            displayScreenings(screeningsData);
+            filteredData = screeningsData; // Initialize filteredData with all data
+            displayScreenings(filteredData);
         });
 
     // Function to display data in the table
@@ -137,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const priceMaxFilter = parseInt(document.getElementById('price-max-filter').value) || Infinity;
 
         // Filter data based on zone, capacity, and max price
-        const filteredData = screeningsData.filter(item => {
+        filteredData = screeningsData.filter(item => {
             return (!zoneFilter || item.zone === zoneFilter) &&
                    (!capacityFilter || item.capacity >= capacityFilter) &&
                    (item.price <= priceMaxFilter);
@@ -150,14 +155,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('zone-filter').value = '';
         document.getElementById('capacity-filter').value = '';
         document.getElementById('price-max-filter').value = '';
-        displayScreenings(screeningsData);
+        filteredData = screeningsData;
+        displayScreenings(filteredData);
     };
 
     let sortDirection = true; // Sort ascending by default
     window.sortTable = function(columnIndex) {
         const columnKeys = ['name', 'address', 'zone', 'capacity', 'price'];
 
-        const sortedData = filteredData.sort((a, b) => {
+        filteredData.sort((a, b) => {
             const aValue = a[columnKeys[columnIndex]];
             const bValue = b[columnKeys[columnIndex]];
 
@@ -167,6 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         sortDirection = !sortDirection; // Toggle sort direction
-        displayScreenings(sortedData);
+        displayScreenings(filteredData);
     };
 });
