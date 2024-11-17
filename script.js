@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const fixturesList = document.getElementById('fixtures-list');
-    const fixturesSection = document.getElementById('upcoming-fixtures');
     const tableBody = document.getElementById('screenings-body');
     let screeningsData = []; // To store parsed table data
     let filteredData = [];   // To store filtered table data
@@ -79,17 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to add disclaimer below the upcoming fixtures
     function addFixturesDisclaimer() {
-        // Check if disclaimer already exists
-        const existingDisclaimer = fixturesSection.querySelector('.fixtures-disclaimer');
+        const existingDisclaimer = document.querySelector('#upcoming-fixtures .disclaimer');
         if (!existingDisclaimer) {
             const disclaimer = document.createElement('p');
+            disclaimer.className = 'disclaimer';
             disclaimer.textContent =
                 'Disclaimer: The English Premier League (EPL) fixtures schedule provided by StarHub TV is for informational purposes only. All fixtures, dates, and times are subject to change based on official EPL announcements and broadcast rights agreements.';
-            disclaimer.className = 'fixtures-disclaimer';
-            disclaimer.style.marginTop = '15px';
-            disclaimer.style.fontSize = '0.9em';
-            disclaimer.style.color = '#6c757d';
-            disclaimer.style.textAlign = 'left'; // Align disclaimer to the left
+            const fixturesSection = document.getElementById('upcoming-fixtures');
             fixturesSection.appendChild(disclaimer);
         }
     }
@@ -129,11 +124,9 @@ document.addEventListener('DOMContentLoaded', () => {
             locationLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(row.name)}`;
             locationLink.textContent = row.name;
             locationLink.target = '_blank'; // Open in a new tab
-            locationLink.style.color = '#1d3557'; // Optional: link color
             locationName.appendChild(locationLink);
             tr.appendChild(locationName);
 
-            // Keep Address as plain text (no link)
             const address = document.createElement('td');
             address.textContent = row.address;
             tr.appendChild(address);
