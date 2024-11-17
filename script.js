@@ -1,10 +1,55 @@
-let screeningsData = [];  // Store the parsed data
-let filteredData = [];    // Store the filtered data for display
-
 document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.getElementById('screenings-body');
+    const fixturesList = document.getElementById('fixtures-list');
 
-    // Load and parse the Excel file
+    // Load and display upcoming fixtures
+    fetch('fixtures.xlsx')
+        .then(response => response.arrayBuffer())
+        .then(data => {
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+            const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+            // Extract fixtures from Excel
+            const fixturesData = jsonData.slice(1).map(row => ({
+                date: row[0], // Date column
+                time: row[1], // Time column
+                event: row[2], // Fixture column
+                channel: row[3] // Channel column
+            }));
+
+            displayFixtures(fixturesData);
+        });
+
+    // Function to display fixtures
+    function displayFixtures(fixtures) {
+        fixturesList.innerHTML = ''; // Clear existing fixtures
+
+        fixtures.forEach(fixture => {
+            const li = document.createElement('li');
+
+            const dateSpan = document.createElement('span');
+            dateSpan.className = 'fixture-date';
+            dateSpan.textContent = `${fixture.date} ${fixture.time}`;
+
+            const eventSpan = document.createElement('span');
+            eventSpan.className = 'fixture-event';
+            eventSpan.textContent = fixture.event;
+
+            const channelSpan = document.createElement('span');
+            channelSpan.className = 'fixture-channel';
+            channelSpan.textContent = fixture.channel;
+
+            li.appendChild(dateSpan);
+            li.appendChild(eventSpan);
+            li.appendChild(channelSpan);
+
+            fixturesList.appendChild(li);
+        });
+    }
+
+    // Load and parse the Excel file for table data
     fetch('screenings.xlsx')
         .then(response => response.arrayBuffer())
         .then(data => {
@@ -14,21 +59,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
             // Convert JSON data and remove header row
-            screeningsData = jsonData.slice(1).map(row => ({
+            const screeningsData = jsonData.slice(1).map(row => ({
                 name: row[0],
                 address: row[1],
                 zone: row[2],
                 capacity: parseInt(row[3]) || 0,
-                price: parseInt(row[4]) || 0  // Directly use price as a number
+                price: parseInt(row[4]) || 0 // Price column as a number
             }));
 
-            filteredData = screeningsData;
-            displayData(filteredData);
+            displayScreenings(screeningsData);
         });
 
-    // Function to display data in table
-    function displayData(data) {
-        tableBody.innerHTML = '';  // Clear existing data
+    // Function to display data in the table
+    function displayScreenings(data) {
+        tableBody.innerHTML = ''; // Clear existing data
+
         data.forEach(row => {
             const tr = document.createElement('tr');
 
@@ -37,8 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const locationLink = document.createElement('a');
             locationLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(row.name)}`;
             locationLink.textContent = row.name;
-            locationLink.target = '_blank';  // Open in a new tab
-            locationLink.style.color = '#1d3557';  // Optional: link color
+            locationLink.target = '_blank'; // Open in a new tab
+            locationLink.style.color = '#1d3557'; // Optional: link color
             locationName.appendChild(locationLink);
             tr.appendChild(locationName);
 
@@ -63,37 +108,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Function to apply filters
+    // Filtering and sorting logic
     window.applyFilters = function() {
         const zoneFilter = document.getElementById('zone-filter').value;
         const capacityFilter = parseInt(document.getElementById('capacity-filter').value) || 0;
         const priceMaxFilter = parseInt(document.getElementById('price-max-filter').value) || Infinity;
 
         // Filter data based on zone, capacity, and max price
-        filteredData = screeningsData.filter(item => {
+        const filteredData = screeningsData.filter(item => {
             return (!zoneFilter || item.zone === zoneFilter) &&
                    (!capacityFilter || item.capacity >= capacityFilter) &&
                    (item.price <= priceMaxFilter);
         });
 
-        displayData(filteredData);
-    }
+        displayScreenings(filteredData);
+    };
 
-    // Function to reset filters
     window.resetFilters = function() {
         document.getElementById('zone-filter').value = '';
         document.getElementById('capacity-filter').value = '';
         document.getElementById('price-max-filter').value = '';
-        filteredData = screeningsData;
-        displayData(filteredData);
-    }
+        displayScreenings(screeningsData);
+    };
 
-    // Function to sort table
-    let sortDirection = true;
+    let sortDirection = true; // Sort ascending by default
     window.sortTable = function(columnIndex) {
         const columnKeys = ['name', 'address', 'zone', 'capacity', 'price'];
 
-        filteredData.sort((a, b) => {
+        const sortedData = filteredData.sort((a, b) => {
             const aValue = a[columnKeys[columnIndex]];
             const bValue = b[columnKeys[columnIndex]];
 
@@ -102,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return 0;
         });
 
-        sortDirection = !sortDirection;  // Toggle sort direction
-        displayData(filteredData);
-    }
+        sortDirection = !sortDirection; // Toggle sort direction
+        displayScreenings(sortedData);
+    };
 });
