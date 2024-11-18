@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Fixtures Schedule</title>
-
-    <!-- Google Analytics Tag -->
+    <title>Full Fixtures - SoccerWatch.sg</title>
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJTNTJ5W43"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -13,7 +12,6 @@
         gtag('js', new Date());
         gtag('config', 'G-KJTNTJ5W43');
     </script>
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,31 +28,32 @@
     <!-- Hero Banner -->
     <header class="hero-banner">
         <div class="hero-overlay">
-            <h1>Full Soccer Fixtures Schedule</h1>
+            <h1>Full Fixtures Schedule</h1>
         </div>
     </header>
 
-    <!-- Full Fixtures Section -->
-    <section id="full-fixtures">
-        <table id="fixtures-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Fixture</th>
-                    <th>Channel</th>
-                </tr>
-            </thead>
-            <tbody id="fixtures-body">
-                <!-- Full fixtures data will be dynamically loaded here -->
-            </tbody>
-        </table>
-    </section>
-
-    <!-- EPL Disclaimer -->
-    <p class="disclaimer epl-disclaimer" style="display: none;">
-        Disclaimer: The English Premier League (EPL) fixtures schedule provided by StarHub TV is for informational purposes only. All fixtures, dates, and times are subject to change based on official EPL announcements and broadcast rights agreements.
-    </p>
+    <!-- Main Content -->
+    <div class="container">
+        <section id="fixtures-table">
+            <h2>English Premier League Fixtures</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Fixture</th>
+                        <th>Channel</th>
+                    </tr>
+                </thead>
+                <tbody id="fixtures-body">
+                    <!-- Data dynamically populated here -->
+                </tbody>
+            </table>
+        </section>
+        <p class="disclaimer epl-disclaimer">
+            Disclaimer: The English Premier League (EPL) fixtures schedule provided by StarHub TV is for informational purposes only. All fixtures, dates, and times are subject to change based on official EPL announcements and broadcast rights agreements.
+        </p>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -65,7 +64,6 @@
 
     <!-- JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
-    <script src="full-fixtures.js"></script>
+    <script src="fixtures.js"></script>
 </body>
 </html>
-
