@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Soccer Screenings in Singapore</title>
-
-    <!-- Google Analytics Tag -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KJTNTJ5W43"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -13,7 +12,6 @@
         gtag('js', new Date());
         gtag('config', 'G-KJTNTJ5W43');
     </script>
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -35,62 +33,65 @@
         </div>
     </header>
 
-    <!-- Upcoming Fixtures Section -->
-    <section id="upcoming-fixtures">
-        <h2>Upcoming Soccer Fixtures</h2>
-        <ul id="fixtures-list">
-            <!-- Fixtures will be dynamically populated here -->
-        </ul>
-        <a href="full-fixtures.html" class="view-full-fixtures">View Full Fixtures</a>
-        <p class="disclaimer epl-disclaimer">
-            Disclaimer: The English Premier League (EPL) fixtures schedule provided by StarHub TV is for informational purposes only. All fixtures, dates, and times are subject to change based on official EPL announcements and broadcast rights agreements.
-        </p>
-    </section>
+    <!-- Main Content Wrapper -->
+    <div class="container">
+        <!-- Upcoming Fixtures Section -->
+        <section id="upcoming-fixtures">
+            <h2>Upcoming Soccer Fixtures</h2>
+            <ul id="fixtures-list">
+                <!-- Fixtures will be dynamically populated here -->
+            </ul>
+            <a href="full-fixtures.html" class="view-full-fixtures">View Full Fixtures</a>
+            <p class="disclaimer epl-disclaimer">
+                Disclaimer: The English Premier League (EPL) fixtures schedule provided by StarHub TV is for informational purposes only. All fixtures, dates, and times are subject to change based on official EPL announcements and broadcast rights agreements.
+            </p>
+        </section>
 
-    <!-- Filter Section -->
-    <section id="filters">
-        <label for="zone-filter">
-            <img src="icons/zone-icon.png" alt="Zone" class="icon"> Zone:
-        </label>
-        <select id="zone-filter">
-            <option value="">All Zones</option>
-            <option value="Central">Central</option>
-            <option value="North">North</option>
-            <option value="East">East</option>
-            <option value="West">West</option>
-        </select>
+        <!-- Filter Section -->
+        <section id="filters">
+            <label for="zone-filter">
+                <img src="icons/zone-icon.png" alt="Zone" class="icon"> Zone:
+            </label>
+            <select id="zone-filter">
+                <option value="">All Zones</option>
+                <option value="Central">Central</option>
+                <option value="North">North</option>
+                <option value="East">East</option>
+                <option value="West">West</option>
+            </select>
 
-        <label for="capacity-filter">
-            <img src="icons/capacity-icon.png" alt="Capacity" class="icon"> Capacity:
-        </label>
-        <input type="number" id="capacity-filter" placeholder="Minimum Capacity">
+            <label for="capacity-filter">
+                <img src="icons/capacity-icon.png" alt="Capacity" class="icon"> Capacity:
+            </label>
+            <input type="number" id="capacity-filter" placeholder="Minimum Capacity">
 
-        <label for="price-max-filter">
-            <img src="icons/price-icon.png" alt="Max Price Per Pax" class="icon"> Max Price Per Pax (SGD):
-        </label>
-        <input type="number" id="price-max-filter" placeholder="Enter Max Price Per Pax">
+            <label for="price-max-filter">
+                <img src="icons/price-icon.png" alt="Max Price Per Pax" class="icon"> Max Price Per Pax (SGD):
+            </label>
+            <input type="number" id="price-max-filter" placeholder="Enter Max Price Per Pax">
 
-        <button onclick="applyFilters()">Apply Filters</button>
-        <button onclick="resetFilters()">Reset Filters</button>
-    </section>
+            <button onclick="applyFilters()">Apply Filters</button>
+            <button onclick="resetFilters()">Reset Filters</button>
+        </section>
 
-    <!-- Table Section -->
-    <section id="screenings">
-        <table id="screenings-table">
-            <thead>
-                <tr>
-                    <th onclick="sortTable(0)">Location <span id="sort-icon-0"></span></th>
-                    <th onclick="sortTable(1)">Address <span id="sort-icon-1"></span></th>
-                    <th onclick="sortTable(2)">Zone <span id="sort-icon-2"></span></th>
-                    <th onclick="sortTable(3)" style="text-align: center;">Capacity <span id="sort-icon-3"></span></th>
-                    <th onclick="sortTable(4)" style="text-align: center;">Est. Price Per Pax (SGD) <span id="sort-icon-4"></span></th>
-                </tr>
-            </thead>
-            <tbody id="screenings-body">
-                <!-- Data will be dynamically populated here -->
-            </tbody>
-        </table>
-    </section>
+        <!-- Table Section -->
+        <section id="screenings">
+            <table id="screenings-table">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">Location <span id="sort-icon-0"></span></th>
+                        <th onclick="sortTable(1)">Address <span id="sort-icon-1"></span></th>
+                        <th onclick="sortTable(2)">Zone <span id="sort-icon-2"></span></th>
+                        <th onclick="sortTable(3)" style="text-align: center;">Capacity <span id="sort-icon-3"></span></th>
+                        <th onclick="sortTable(4)" style="text-align: center;">Est. Price Per Pax (SGD) <span id="sort-icon-4"></span></th>
+                    </tr>
+                </thead>
+                <tbody id="screenings-body">
+                    <!-- Data will be dynamically populated here -->
+                </tbody>
+            </table>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer>

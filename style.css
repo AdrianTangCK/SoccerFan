@@ -14,6 +14,14 @@ body {
     padding: 0;
 }
 
+/* Content Container */
+.container {
+    width: 100%;
+    max-width: 1200px; /* Limit content width on large screens */
+    margin: 0 auto; /* Center content horizontally */
+    padding: 0 20px; /* Add padding to left and right */
+}
+
 /* Navigation Bar */
 .navbar {
     background-color: #1d3557;
