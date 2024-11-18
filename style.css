@@ -10,23 +10,25 @@ body {
     background-color: #f1faee;
     color: #333333;
     line-height: 1.6;
-    padding: 20px;
 }
 
 /* Navigation Bar */
 .navbar {
-    background-color: #1d3557; /* Dark blue background */
+    background-color: #1d3557;
     padding: 10px 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .navbar ul {
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
     display: flex;
-    justify-content: space-around; /* Space links evenly */
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .navbar ul li {
@@ -35,14 +37,14 @@ body {
 
 .navbar ul li a {
     text-decoration: none;
-    color: #ffffff; /* White text for contrast */
-    font-size: 1em;
+    color: #ffffff;
     font-weight: bold;
+    font-size: 1em;
     transition: color 0.3s;
 }
 
 .navbar ul li a:hover {
-    color: #a8dadc; /* Light blue on hover */
+    color: #a8dadc;
 }
 
 /* Hero Banner */
@@ -52,145 +54,24 @@ body {
     background-position: center;
     color: #f1faee;
     text-align: center;
-    padding: 60px 20px;
+    padding: 40px 20px;
     margin-bottom: 20px;
     border-radius: 8px;
-    position: relative;
 }
 
 .hero-overlay {
-    background: rgba(0, 0, 0, 0.6); /* Dark overlay to enhance text visibility */
-    padding: 40px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
     border-radius: 8px;
 }
 
 .hero-banner h1 {
-    font-size: 2.5em;
+    font-size: 2em;
     margin-bottom: 10px;
-    color: #f1faee;
 }
 
 .hero-banner p {
-    font-size: 1.2em;
-    color: #f1faee;
-}
-
-/* Fixtures Table */
-#fixtures-table, #screenings-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-#fixtures-table th, #fixtures-table td,
-#screenings-table th, #screenings-table td {
-    padding: 12px;
-    border: 1px solid #ddd; /* Add table borders */
-    text-align: left;
-}
-
-#fixtures-table th, #screenings-table th {
-    background-color: #457b9d; /* Blue background for headers */
-    color: #ffffff;
-    font-weight: bold;
-    text-align: left;
-    position: relative; /* For sort arrows */
-}
-
-#fixtures-table tbody tr:nth-child(even),
-#screenings-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* Alternating row colors */
-}
-
-#fixtures-table tbody tr:hover,
-#screenings-table tbody tr:hover {
-    background-color: #eaf4fa; /* Hover effect */
-}
-
-#screenings-table td:nth-child(4), #screenings-table td:nth-child(5) {
-    text-align: center; /* Center align capacity and price columns */
-}
-
-/* Sorting Arrows */
-th span {
-    margin-left: 5px;
-    font-size: 0.8em;
-    color: #ffffff;
-    vertical-align: middle;
-}
-
-th span::before {
-    content: '';
-    display: inline-block;
-    margin-right: 2px;
-}
-
-/* Upcoming Fixtures Section */
-#upcoming-fixtures {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-left: 5px solid #1d3557;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-#upcoming-fixtures h2 {
-    margin-bottom: 15px;
-    color: #1d3557;
-    font-size: 1.8em;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-bottom: 2px solid #1d3557;
-    padding-bottom: 5px;
-    display: inline-block;
-}
-
-#fixtures-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#fixtures-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 15px;
-    margin-bottom: 10px;
-    background-color: #e9ecef;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-}
-
-#fixtures-list li:hover {
-    background-color: #d1e7f0; /* Light hover effect */
-}
-
-.fixture-date {
-    font-weight: bold;
     font-size: 1.1em;
-    color: #1d3557;
-    width: 25%; /* Ensures consistent layout */
-}
-
-.fixture-event {
-    flex-grow: 1;
-    margin-left: 10px;
-    color: #333333;
-    font-size: 1.1em;
-    font-weight: 500;
-}
-
-.fixture-channel {
-    color: #457b9d;
-    font-size: 1em;
-    font-style: italic;
-    width: 25%;
-    text-align: right;
 }
 
 /* Filter Section */
@@ -236,41 +117,95 @@ th span::before {
     background-color: #457b9d;
 }
 
-/* Disclaimers */
-.disclaimer {
-    margin-top: 15px;
-    text-align: left;
-    line-height: 1.5;
-}
-
-.epl-disclaimer {
-    color: #005f99; /* Darker blue for contrast */
-    font-size: 0.9em;
+/* Table Section */
+#screenings-table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 20px;
-}
-
-.learning-disclaimer {
-    color: #f1f1f1; /* Light gray for readability on dark background */
-    font-size: 1em;
-}
-
-/* Footer */
-footer {
-    margin-top: 40px;
-    background-color: #457b9d; /* Dark blue background */
-    color: #ffffff; /* Bright white for readability */
-    text-align: center;
-    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    font-size: 0.9em;
-    line-height: 1.5;
 }
 
-footer p {
-    margin: 0;
+#screenings-table th, #screenings-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+#screenings-table th {
+    background-color: #457b9d;
+    color: #ffffff;
+}
+
+#screenings-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#screenings-table tbody tr:hover {
+    background-color: #eaf4fa;
+}
+
+/* Upcoming Fixtures Section */
+#upcoming-fixtures {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-left: 5px solid #1d3557;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#upcoming-fixtures h2 {
+    margin-bottom: 15px;
+    color: #1d3557;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #1d3557;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+#fixtures-list {
+    list-style: none;
     padding: 0;
-    text-align: left; /* Align footer disclaimer to the left */
-    color: #f1f1f1; /* Light gray for readability */
+    margin: 0;
+}
+
+#fixtures-list li {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#fixtures-list li:hover {
+    background-color: #d1e7f0;
+}
+
+.fixture-date {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #1d3557;
+    margin-bottom: 5px;
+}
+
+.fixture-event {
+    font-size: 1.1em;
+    color: #333333;
+    font-weight: 500;
+}
+
+.fixture-channel {
+    font-size: 1em;
+    color: #457b9d;
+    font-style: italic;
 }
 
 /* View Full Fixtures Button */
@@ -290,4 +225,73 @@ footer p {
 .view-full-fixtures:hover {
     background-color: #1d3557;
     color: #f1faee;
+}
+
+/* Disclaimers */
+.disclaimer {
+    margin-top: 15px;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.epl-disclaimer {
+    color: #005f99;
+    font-size: 0.9em;
+}
+
+.learning-disclaimer {
+    color: #f1f1f1;
+    font-size: 1em;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    background-color: #457b9d;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-banner h1 {
+        font-size: 1.5em;
+    }
+
+    .hero-banner p {
+        font-size: 1em;
+    }
+
+    #filters {
+        flex-direction: column;
+    }
+
+    #screenings-table, #screenings-table th, #screenings-table td {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+
+    .view-full-fixtures {
+        display: block;
+        margin: 10px auto;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .hero-banner h1 {
+        font-size: 1.8em;
+    }
+
+    .hero-banner p {
+        font-size: 1em;
+    }
 }
