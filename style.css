@@ -29,7 +29,7 @@ body {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 15px;
+    gap: 30px; /* Increased gap between items */
     flex-wrap: wrap;
 }
 
