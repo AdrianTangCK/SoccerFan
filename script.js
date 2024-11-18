@@ -143,12 +143,23 @@ document.addEventListener('DOMContentLoaded', () => {
     window.applyFilters = function () {
         const selectedZone = zoneFilter.value;
         const minCapacity = parseInt(capacityFilter.value, 10) || 0;
-        const maxPrice = parseFloat(priceMaxFilter.value) || Infinity;
+        const maxPriceInput = priceMaxFilter.value.trim(); // Read user input as a string
 
         const filteredData = screeningsData.filter(screening => {
             const capacity = parseInt(screening.Capacity, 10) || 0;
             const price = parseFloat(screening["Est. Price Per Pax (SGD)"]) || 0;
 
+            // Check if Max Price filter is explicitly 0
+            if (maxPriceInput === "0") {
+                return (
+                    (selectedZone === '' || screening.Zone === selectedZone) &&
+                    capacity >= minCapacity &&
+                    price === 0
+                );
+            }
+
+            // Otherwise, apply general filters
+            const maxPrice = parseFloat(maxPriceInput) || Infinity;
             return (
                 (selectedZone === '' || screening.Zone === selectedZone) &&
                 capacity >= minCapacity &&
