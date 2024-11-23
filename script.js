@@ -85,13 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayUpcomingFixtures(fixtures) {
         fixturesList.innerHTML = ''; // Clear existing data
 
-        const today = new Date();
-        const next5Days = new Date();
-        next5Days.setDate(today.getDate() + 5);
+        const now = new Date();
+        const endOfNext5Days = new Date();
+        endOfNext5Days.setDate(now.getDate() + 5);
+        endOfNext5Days.setHours(23, 59, 59, 999); // Include the entire 5th day
 
         const filteredFixtures = fixtures.filter(fixture => {
-            const fixtureDate = new Date(fixture.Date);
-            return fixtureDate >= today && fixtureDate <= next5Days;
+            const fixtureDateTime = new Date(`${fixture.Date} ${fixture.Time}`);
+            return fixtureDateTime >= now && fixtureDateTime <= endOfNext5Days;
         });
 
         if (filteredFixtures.length === 0) {
@@ -105,14 +106,14 @@ document.addEventListener('DOMContentLoaded', () => {
         filteredFixtures.forEach(fixture => {
             const listItem = document.createElement('li');
 
-            const date = new Date(`${fixture.Date} ${fixture.Time}`);
-            const formattedDate = date.toLocaleDateString('en-SG', {
+            const fixtureDateTime = new Date(`${fixture.Date} ${fixture.Time}`);
+            const formattedDate = fixtureDateTime.toLocaleDateString('en-SG', {
                 weekday: 'short',
                 day: '2-digit',
                 month: 'short',
                 year: 'numeric',
             });
-            const formattedTime = date.toLocaleTimeString('en-SG', {
+            const formattedTime = fixtureDateTime.toLocaleTimeString('en-SG', {
                 hour: '2-digit',
                 minute: '2-digit',
                 hour12: true,
