@@ -47,9 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const locationTd = document.createElement('td');
             const locationLink = document.createElement('a');
             locationLink.textContent = screening.Location;
-            // Construct Google Maps query with location name
             locationLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(screening.Location + ', Singapore')}`;
-            locationLink.target = "_blank"; // Open in a new tab
+            locationLink.target = "_blank";
             locationLink.style.color = "#1d3557";
             locationLink.style.textDecoration = "underline";
             locationTd.appendChild(locationLink);
@@ -87,17 +86,17 @@ document.addEventListener('DOMContentLoaded', () => {
         fixturesList.innerHTML = ''; // Clear existing data
 
         const today = new Date();
-        const next7Days = new Date();
-        next7Days.setDate(today.getDate() + 7);
+        const next5Days = new Date();
+        next5Days.setDate(today.getDate() + 5);
 
         const filteredFixtures = fixtures.filter(fixture => {
             const fixtureDate = new Date(fixture.Date);
-            return fixtureDate >= today && fixtureDate <= next7Days;
+            return fixtureDate >= today && fixtureDate <= next5Days;
         });
 
         if (filteredFixtures.length === 0) {
             const noFixturesMessage = document.createElement('li');
-            noFixturesMessage.textContent = 'No upcoming fixtures in the next 7 days.';
+            noFixturesMessage.textContent = 'No upcoming fixtures in the next 5 days.';
             noFixturesMessage.style.color = '#6c757d';
             fixturesList.appendChild(noFixturesMessage);
             return;
@@ -111,16 +110,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 weekday: 'short',
                 day: '2-digit',
                 month: 'short',
-                year: 'numeric', // Include the year
+                year: 'numeric',
             });
             const formattedTime = date.toLocaleTimeString('en-SG', {
                 hour: '2-digit',
                 minute: '2-digit',
-                hour12: true, // AM/PM format
+                hour12: true,
             });
 
             const dateSpan = document.createElement('span');
-            dateSpan.textContent = `${formattedDate}, ${formattedTime}`; // Full format
+            dateSpan.textContent = `${formattedDate}, ${formattedTime}`;
             dateSpan.classList.add('fixture-date');
 
             const eventSpan = document.createElement('span');
@@ -143,13 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.applyFilters = function () {
         const selectedZone = zoneFilter.value;
         const minCapacity = parseInt(capacityFilter.value, 10) || 0;
-        const maxPriceInput = priceMaxFilter.value.trim(); // Read user input as a string
+        const maxPriceInput = priceMaxFilter.value.trim();
 
         const filteredData = screeningsData.filter(screening => {
             const capacity = parseInt(screening.Capacity, 10) || 0;
             const price = parseFloat(screening["Est. Price Per Pax (SGD)"]) || 0;
 
-            // Check if Max Price filter is explicitly 0
             if (maxPriceInput === "0") {
                 return (
                     (selectedZone === '' || screening.Zone === selectedZone) &&
@@ -158,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
             }
 
-            // Otherwise, apply general filters
             const maxPrice = parseFloat(maxPriceInput) || Infinity;
             return (
                 (selectedZone === '' || screening.Zone === selectedZone) &&
